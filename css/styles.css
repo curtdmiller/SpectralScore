@@ -1,7 +1,71 @@
+body {
+    margin-top: 10px;
+    font-family: Helvetica, monospace;
+}
+.container {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    /*text-align: center;*/
+}
+a {
+    text-decoration: none;
+    color: orange;
+}
+a:hover {
+    border-bottom: orange solid 3px;
+}
+h1 {
+    margin-bottom: 40px;
+}
+h1 span.bold-underline {
+    border-bottom: orange solid 4px;
+    padding-bottom: 5px;
+}
+.legend {
+    margin: 20px 0;
+}
+.legend h6 {
+    margin: 0;
+    padding: 0;
+}
+.red-box {
+    display: inline-block;
+    background: red;
+    width: 40px;
+}
+.orange-box {
+    display: inline-block;
+    background: orange;
+    width: 40px;
+}
+.green-box {
+    display: inline-block;
+    background: green;
+    width: 40px;
+}
+.blue-box {
+    display: inline-block;
+    background: blue;
+    width: 40px;
+}
+.svg-container {
+    /*text-align: center;*/
+}
+
+/**********************
+ * SVG element styles *
+ **********************/
+svg {
+    text-align: center;
+    border: solid #aaa 1px;
+    padding: 20px;
+}
 line {
     stroke: #000;
     stroke-width: 1;
 }
 .staffline {
     stroke: #888;
+    stroke-width: 2;
 }

@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Solo for Wounded D3</title>
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-    <body>
-
+<head>
+    <meta charset="utf-8">
+    <title>Solo for Wounded D3</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1><span class="bold-underline">Spectral Score</span></h1>
+        <h5>Pitch detection via <a href="http://crca.ucsd.edu/~tapel/icmc98.pdf">fiddle~</a> (<a href="https://puredata.info/">Pd</a>), graphing via D3</h5>
+        <div class="legend">
+            <h6><span class="red-box">&nbsp;</span> Partial 1</h6>
+            <h6><span class="orange-box">&nbsp;</span> Partial 2</h6>
+            <h6><span class="green-box">&nbsp;</span> Partial 3</h6>
+            <h6><span class="blue-box">&nbsp;</span> Partial 4</h6>
+        </div>
+        <div class="svg-container">
+            <svg width="1000" height="400">
+            </svg>
+        </div>
+    </div>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="js/fiddleGraph.js" charset="utf-8"></script>
-    </body>
+</body>
 </html>

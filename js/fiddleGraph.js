@@ -1,12 +1,8 @@
-var width = 1000;
-    height = 400;
+var svg = d3.select('svg');
+var width = svg.attr('width');
+    height = svg.attr('height');
     margin = {top: 0, right: 20, bottom: 20, left: 40};
-    scorelines = [63.5, 67, 70.5, 74, 77.5]; // midi approximations of treble staff lines
-
-var svg = d3.select('body').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .style('border', '1px solid black');
+    scorelines = [63.5, 67, 70.5, 74, 77.5]; // midi approximations of treble staff lines, problematic: sharps and flats in a even scaled graph.
 
 var x = d3.scaleLinear()
     .range([0, width - margin.left - margin.right]);
