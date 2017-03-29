@@ -29,6 +29,11 @@ h1 span.bold-underline {
     margin: 0;
     padding: 0;
 }
+.legend p {
+    margin: 5px 0;
+    font-size: .7em;
+    font-style: italic;
+}
 .red-box {
     display: inline-block;
     background: red;

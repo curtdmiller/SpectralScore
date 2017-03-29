@@ -4,12 +4,14 @@ var width = svg.attr('width');
     margin = {top: 0, right: 20, bottom: 20, left: 40};
     scorelines = [63.5, 67, 70.5, 74, 77.5]; // midi approximations of treble staff lines, problematic: sharps and flats in a even scaled graph.
 
+// create x & y scales
 var x = d3.scaleLinear()
     .range([0, width - margin.left - margin.right]);
 var y = d3.scaleLinear()
     .domain([0,136]) // midi range
     .range([height - margin.bottom, 0]);
 
+// manually create score lines
 for (var i = 0; i < scorelines.length; i++) {
     svg.append('line')
         .attr('x1', 0)
@@ -19,6 +21,7 @@ for (var i = 0; i < scorelines.length; i++) {
         .attr('class', 'staffline');
 }
 
+// clef graphic
 var clefheight = height * .225;
 svg.append('svg:image')
     .attr('xlink:href', '../trebleClef.svg')
@@ -27,10 +30,42 @@ svg.append('svg:image')
     .attr('height', clefheight)
     .attr('width', clefheight / 2.25);
 
+// set up path for fundamental graphing
 var line = d3.line()
     .x(function(d) { return x(d[0]); })
     .y(function(d) { return y(d[1]); });
 
+// legend hover actions
+d3.select('.legend-red').on('mouseover', function(){
+    d3.selectAll('.datum-red')
+        .attr('r', 2);
+}).on('mouseout', function(){
+    d3.selectAll('.datum-red')
+        .attr('r', 1);
+});
+d3.select('.legend-orange').on('mouseover', function(){
+    d3.selectAll('.datum-orange')
+        .attr('r', 2);
+}).on('mouseout', function(){
+    d3.selectAll('.datum-orange')
+        .attr('r', 1);
+});
+d3.select('.legend-green').on('mouseover', function(){
+    d3.selectAll('.datum-green')
+        .attr('r', 2);
+}).on('mouseout', function(){
+    d3.selectAll('.datum-green')
+        .attr('r', 1);
+});
+d3.select('.legend-blue').on('mouseover', function(){
+    d3.selectAll('.datum-blue')
+        .attr('r', 2);
+}).on('mouseout', function(){
+    d3.selectAll('.datum-blue')
+        .attr('r', 1);
+});
+
+// get data and graph!
 d3.text('../fiddle-data/fundamentalB.txt', function(error, text){
     if (error) throw error;
     // each line of pd output: "index fiddle-value;\n"
@@ -76,7 +111,7 @@ d3.text('../fiddle-data/partials.txt', function(error, text){
         }
     }
 
-    x.domain([0, text.length]) // relies on the syncing in the pd patch to give both documents the same number of data points. potentially reliable but seems fragile here.
+    x.domain([0, text.length]) // relies on the syncing in the pd patch to give both documents the same number of data points. better to sync the data in the pd patch?
     var g1 = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     g1.selectAll("circle")
@@ -84,6 +119,7 @@ d3.text('../fiddle-data/partials.txt', function(error, text){
         .attr('cx', function(d,i){return x(i)})
         .attr('cy', function(d, i){return y(d[0])})
         .attr('r', 1)
+        .attr('class','datum-red')
         .style('fill', 'red');
     var g2 = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -92,7 +128,8 @@ d3.text('../fiddle-data/partials.txt', function(error, text){
         .attr('cx', function(d,i){return x(i)})
         .attr('cy', function(d, i){return y(d[1])})
         .attr('r', 1)
-        .style('fill', 'green');
+        .attr('class','datum-orange')
+        .style('fill', 'orange');
     var g3 = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     g3.selectAll("circle")
@@ -100,13 +137,15 @@ d3.text('../fiddle-data/partials.txt', function(error, text){
         .attr('cx', function(d,i){return x(i)})
         .attr('cy', function(d, i){return y(d[2])})
         .attr('r', 1)
-        .style('fill', 'blue');
+        .attr('class','datum-green')
+        .style('fill', 'green');
     var g4 = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     g4.selectAll("circle")
         .data(text).enter().append('circle')
         .attr('cx', function(d,i){return x(i)})
-        .attr('cy', function(d, i){return y(d[2])})
+        .attr('cy', function(d, i){return y(d[3])})
         .attr('r', 1)
-        .style('fill', 'purple');
+        .attr('class','datum-blue')
+        .style('fill', 'blue');
 })
