@@ -24,7 +24,7 @@ for (var i = 0; i < scorelines.length; i++) {
 // clef graphic
 var clefheight = height * .225;
 svg.append('svg:image')
-    .attr('xlink:href', '../trebleClef.svg')
+    .attr('xlink:href', 'trebleClef.svg')
     .attr('x', 0)
     .attr('y', height / 2.93)
     .attr('height', clefheight)
@@ -66,7 +66,7 @@ d3.select('.legend-blue').on('mouseover', function(){
 });
 
 // get data and graph!
-d3.text('../fiddle-data/fundamentalB.txt', function(error, text){
+d3.text('fiddle-data/fundamentalB.txt', function(error, text){
     if (error) throw error;
     // each line of pd output: "index fiddle-value;\n"
     text = text.split(';');
@@ -100,7 +100,7 @@ d3.text('../fiddle-data/fundamentalB.txt', function(error, text){
         .attr("d", line);
 })
 
-d3.text('../fiddle-data/partials.txt', function(error, text){
+d3.text('fiddle-data/partials.txt', function(error, text){
     if (error) throw error;
 
     text = text.split(';');
